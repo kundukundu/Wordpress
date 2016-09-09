@@ -1,0 +1,24 @@
+<?php 
+ /* Get a random wordpress post from */
+ /* a custom post type with the user's current language (polylang) */
+?>
+
+<?php
+  /* pll_current_language() is a polylang function */
+  $currentLanguage = pll_current_language();
+  $loop = new WP_Query( array( 
+    orderby => 'rand', 
+    'post_type' => 'our_quote', 
+    'cache_results'  => false, 
+    'update_post_meta_cache' => false, 
+    'lang' => $currentLanguage, 
+    'posts_per_page' => 1) 
+  );
+  // print_r($loop);
+?>
+
+<?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
+
+	//Put the html here
+
+<?php endwhile; ?>
